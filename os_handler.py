@@ -15,12 +15,14 @@ class Os(ABC):
         self.packages: list
 
     def prepare(self):
-
+        logging.info("Running system update command...")
         self.run_command(self.update_command)
 
+        logging.info("Running preparation scripts...")
         for command in self.prepare_commands:
             self.run_command(command)
-
+        
+        logging.info("Installing packages...")
         for package in self.packages:
             self.run_command(f"{self.install_command} {package}")
 
@@ -113,5 +115,6 @@ def get_current_os_name() -> str:
 
 
 if __name__ == '__main__':
+    logging.basicConfig(format='%(asctime)s %(message)s', encoding='utf-8', datefmt='%H:%M:%S', level=logging.INFO)
     current_os = get_current_os_class()()
     current_os.prepare()
