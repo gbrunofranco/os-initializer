@@ -5,7 +5,7 @@ OS class tests.
 import unittest
 from abc import ABCMeta
 
-from os_handler import ArcoLinux, ArchLinux, Os, get_current_os_class, get_current_os_name
+from os_handler import Arcolinux, Arch, Os, get_current_os_class, get_current_os_name
 
 
 class TestHelperFunctions(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestHelperFunctions(unittest.TestCase):
         self.assertIsInstance(get_current_os_name(), str)
 
     def test_get_current_os_class_returns_class(self):
-        supported_oses_class = [ArcoLinux]
+        supported_oses_class = [Arcolinux, Arch]
         self.assertIn(get_current_os_class(), supported_oses_class)
 
 
@@ -24,7 +24,7 @@ class TestArcolinuxInitialization(unittest.TestCase):
 
     def setUp(self):
         """Setup test fixtures"""
-        self.working_machine_os = ArcoLinux()
+        self.working_machine_os = Arcolinux()
 
     def test_get_os_install_command_returns_string(self):
         "Whether get_os_install_command returns a string"
@@ -58,7 +58,7 @@ class TestArchlinuxInitialization(unittest.TestCase):
 
     def setUp(self):
         """Setup test fixtures"""
-        self.working_machine_os = ArchLinux()
+        self.working_machine_os = Arch()
 
     def test_get_os_install_command_returns_string(self):
         "Whether get_os_install_command returns a string"

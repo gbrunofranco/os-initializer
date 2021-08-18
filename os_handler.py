@@ -56,8 +56,8 @@ class Os(ABC):
         pass
 
 
-class ArcoLinux(Os):
-    """Handler for ArcoLinux system"""
+class Arcolinux(Os):
+    """Handler for Arcolinux system"""
 
     packages = [
         'tint2',
@@ -86,7 +86,7 @@ class ArcoLinux(Os):
         return cleanup_commands
 
 
-class ArchLinux(Os):
+class Arch(Os):
     """Handler for ArchLinux system"""
 
     packages = [
@@ -121,7 +121,7 @@ def get_current_os_class():
 
 
 def get_current_os_name() -> str:
-    return run(f"grep '^NAME=' /etc/os-release", shell=True, capture_output=True).stdout.decode("utf-8").strip()[5:].replace(' ', '')
+    return run(f"grep '^ID=' /etc/os-release", shell=True, capture_output=True).stdout.decode("utf-8").strip()[3:].replace(' ', '').capitalize()
 
 
 if __name__ == '__main__':
