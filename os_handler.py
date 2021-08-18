@@ -75,7 +75,7 @@ class Arcolinux(Os):
     def get_os_prepare_commands(self) -> list[str]:
         prepare_commands = [
             "git clone https://github.com/gbrunofranco/dotfiles.git",
-            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf ./dotfiles/etc/X11/xorg.conf.d/"
+            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/"
         ]
         return prepare_commands
 
@@ -105,7 +105,7 @@ class Arch(Os):
     def get_os_prepare_commands(self) -> list[str]:
         prepare_commands = [
             "git clone https://github.com/gbrunofranco/dotfiles.git",
-            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf ./dotfiles/etc/X11/xorg.conf.d/"
+            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/"
         ]
         return prepare_commands
 
