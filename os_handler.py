@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 from subprocess import call, run
 
@@ -25,6 +26,12 @@ class Os(ABC):
 
         for command in self.cleanup_command:
             self.run_command(command)
+    
+    def get_os_prepare_commands(self) -> list[str]:
+        prepare_commands = [
+            "bash setup.sh"
+        ]
+        return prepare_commands
 
     @staticmethod
     def run_command(command):
@@ -43,11 +50,6 @@ class Os(ABC):
     @abstractmethod
     def get_os_update_command():
         """Returns the system-wide package update command for the current OS"""
-        pass
-
-    @abstractmethod
-    def get_os_prepare_commands(self):
-        """Returns the commands that run before the installation of packages"""
         pass
 
     @abstractmethod
@@ -72,13 +74,6 @@ class Arcolinux(Os):
     def get_os_update_command() -> str:
         return "sudo pacman -Syu"
 
-    def get_os_prepare_commands(self) -> list[str]:
-        prepare_commands = [
-            "git clone https://github.com/gbrunofranco/dotfiles.git",
-            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/"
-        ]
-        return prepare_commands
-
     def get_os_cleanup_commands(self) -> list[str]:
         cleanup_commands = [
             "rm -rf ./dotfiles"
@@ -101,13 +96,6 @@ class Arch(Os):
     @staticmethod
     def get_os_update_command() -> str:
         return "sudo pacman -Syu"
-
-    def get_os_prepare_commands(self) -> list[str]:
-        prepare_commands = [
-            "git clone https://github.com/gbrunofranco/dotfiles.git",
-            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/"
-        ]
-        return prepare_commands
 
     def get_os_cleanup_commands(self) -> list[str]:
         cleanup_commands = [
