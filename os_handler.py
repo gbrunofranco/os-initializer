@@ -21,7 +21,7 @@ class Os(ABC):
             self.run_command(command)
 
         for package in self.packages:
-            self.install_command(package)
+            self.run_command(f"{self.install_command} {package}")
 
         for command in self.cleanup_command:
             self.run_command(command)
@@ -75,7 +75,7 @@ class Arcolinux(Os):
     def get_os_prepare_commands(self) -> list[str]:
         prepare_commands = [
             "git clone https://github.com/gbrunofranco/dotfiles.git",
-            "sudo cp ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf ./dotfiles/etc/X11/xorg.conf.d/"
+            "sudo cp -r ./dotfiles/etc/X11/xorg.conf.d/00-keyboard.conf ./dotfiles/etc/X11/xorg.conf.d/"
         ]
         return prepare_commands
 
