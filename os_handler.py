@@ -66,11 +66,11 @@ class Arcolinux(Os):
 
     @staticmethod
     def get_os_install_command() -> str:
-        return "pacman -S"
+        return "sudo pacman -S"
 
     @staticmethod
     def get_os_update_command() -> str:
-        return "pacman -Syu"
+        return "sudo pacman -Syu"
 
     def get_os_prepare_commands(self) -> list[str]:
         prepare_commands = [
@@ -96,11 +96,11 @@ class Arch(Os):
 
     @staticmethod
     def get_os_install_command() -> str:
-        return "pacman -S"
+        return "sudo pacman -S"
 
     @staticmethod
     def get_os_update_command() -> str:
-        return "pacman -Syu"
+        return "sudo pacman -Syu"
 
     def get_os_prepare_commands(self) -> list[str]:
         prepare_commands = [
