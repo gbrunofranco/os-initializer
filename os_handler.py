@@ -34,14 +34,16 @@ class Os(ABC):
         with open('packages.txt') as packages_file:
             packages = packages_file.readlines()
         return packages
-
-    def get_os_prepare_commands(self) -> list[str]:
+    
+    @staticmethod
+    def get_os_prepare_commands() -> list[str]:
         prepare_commands = [
             "bash setup.sh"
         ]
         return prepare_commands
 
-    def get_os_cleanup_commands(self) -> list[str]:
+    @staticmethod
+    def get_os_cleanup_commands() -> list[str]:
         cleanup_commands = [
             "bash cleanup.sh"
         ]
