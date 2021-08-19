@@ -17,6 +17,7 @@ then
         sudo apt-get update
         sudo apt-get install python3.9
     elif [[ -x $(command -v pacman) ]]; then
+        sudo pacman -Syu
         sudo pacman -S python
     else
         echo "Error can't install python 3.9"
