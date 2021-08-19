@@ -1,6 +1,7 @@
 #!/bin/sh
 
-if [[! command -v python &> /dev/null ]]; then
+if ! command -v python &> /dev/null
+then
     echo "Python could not be found..."
     echo "Installing python 3.9 ..."
     if [[ -x $(command -v yum) ]]; then
