@@ -92,12 +92,6 @@ class Arch(Os):
     def get_os_update_command() -> str:
         return "sudo pacman -Syu"
 
-    def get_os_cleanup_commands(self) -> list[str]:
-        cleanup_commands = [
-            "rm -rf ./dotfiles"
-        ]
-        return cleanup_commands
-
 
 def get_current_os_class():
     return globals()[get_current_os_name()]
