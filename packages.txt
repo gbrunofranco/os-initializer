@@ -1,0 +1,3 @@
+xorg
+tint2
+openbox

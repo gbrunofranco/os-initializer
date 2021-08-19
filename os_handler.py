@@ -12,7 +12,7 @@ class Os(ABC):
         self.update_command: str = self.get_os_update_command()
         self.prepare_commands: list[str] = self.get_os_prepare_commands()
         self.cleanup_command: list[str] = self.get_os_cleanup_commands()
-        self.packages: list
+        self.packages: list = self.get_packages()
 
     def prepare(self):
         logging.info("Running system update command...")
@@ -29,6 +29,12 @@ class Os(ABC):
         for command in self.cleanup_command:
             self.run_command(command)
     
+    @staticmethod
+    def get_packages():
+        with open('packages.txt') as packages_file:
+            packages = packages_file.readlines()
+        return packages
+
     def get_os_prepare_commands(self) -> list[str]:
         prepare_commands = [
             "bash setup.sh"
@@ -64,11 +70,6 @@ class Os(ABC):
 class Arcolinux(Os):
     """Handler for Arcolinux system"""
 
-    packages = [
-        'tint2',
-        'openbox',
-    ]
-
     @staticmethod
     def get_os_install_command() -> str:
         return "sudo pacman -S"
@@ -80,11 +81,6 @@ class Arcolinux(Os):
 
 class Arch(Os):
     """Handler for ArchLinux system"""
-
-    packages = [
-        'tint2',
-        'openbox',
-    ]
 
     @staticmethod
     def get_os_install_command() -> str:
