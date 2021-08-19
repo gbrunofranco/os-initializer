@@ -35,6 +35,12 @@ class Os(ABC):
         ]
         return prepare_commands
 
+    def get_os_cleanup_commands(self) -> list[str]:
+        cleanup_commands = [
+            "bash cleanup.sh"
+        ]
+        return cleanup_commands
+
     @staticmethod
     def run_command(command):
         try:
@@ -54,11 +60,6 @@ class Os(ABC):
         """Returns the system-wide package update command for the current OS"""
         pass
 
-    @abstractmethod
-    def get_os_cleanup_commands(self):
-        """Returns the commands that run after the installation of packages"""
-        pass
-
 
 class Arcolinux(Os):
     """Handler for Arcolinux system"""
@@ -75,12 +76,6 @@ class Arcolinux(Os):
     @staticmethod
     def get_os_update_command() -> str:
         return "sudo pacman -Syu"
-
-    def get_os_cleanup_commands(self) -> list[str]:
-        cleanup_commands = [
-            "rm -rf ./dotfiles"
-        ]
-        return cleanup_commands
 
 
 class Arch(Os):
